@@ -64,12 +64,11 @@ function App() {
   };
 
   return (
-    <>
-      <header>Created by Cornel</header>
+    <div className="app-wrapper">
       <div className="container">
         {view === 'menu' && (
           <div className="menu-view">
-              <h1>Alege tipul</h1>
+              <h1>Alege <span>Tipul</span></h1>
               <button onClick={() => setView('biga')}>Calcul Biga</button>
               <button onClick={() => setView('aluat')}>Calcul Aluat</button>
           </div>
@@ -77,20 +76,21 @@ function App() {
 
         {view === 'biga' && (
           <div className="calc-view">
-              <h1>Calcul Biga</h1>
+              <h1>Calcul <span>Biga</span></h1>
               <div className="input-group">
-                  <label htmlFor="b-aer">Temperatură aer (°C):</label>
+                  <label htmlFor="b-aer">Temperatură aer (°C)</label>
                   <input type="number" id="b-aer" step="0.1" placeholder="ex. 24.5" value={bigaAer} onChange={(e) => setBigaAer(e.target.value)} />
               </div>
               <div className="input-group">
-                  <label htmlFor="b-faina">Temperatură făină (°C):</label>
+                  <label htmlFor="b-faina">Temperatură făină (°C)</label>
                   <input type="number" id="b-faina" step="0.1" placeholder="ex. 20" value={bigaFaina} onChange={(e) => setBigaFaina(e.target.value)} />
               </div>
-              {bigaError && <div className="error">Introduceți toate valorile numerice corect.</div>}
+              {bigaError && <div className="error">Introduceți toate valorile corect.</div>}
               <button onClick={handleCalcBiga}>Calculează</button>
               {bigaResult && (
                   <div className="result-box">
-                      Temperatura apei trebuie să fie: <span>{bigaResult}°C</span>
+                      Temperatura apei
+                      <span>{bigaResult}°C</span>
                   </div>
               )}
               <button className="btn-back" onClick={resetAll}>Înapoi</button>
@@ -99,31 +99,37 @@ function App() {
 
         {view === 'aluat' && (
           <div className="calc-view">
-              <h1>Calcul Aluat</h1>
+              <h1>Calcul <span>Aluat</span></h1>
               <div className="input-group">
-                  <label htmlFor="a-biga">Temperatură biga (°C):</label>
+                  <label htmlFor="a-biga">Temperatură biga (°C)</label>
                   <input type="number" id="a-biga" step="0.1" placeholder="ex. 18" value={aluatBiga} onChange={(e) => setAluatBiga(e.target.value)} />
               </div>
               <div className="input-group">
-                  <label htmlFor="a-faina">Temperatură făină (°C):</label>
+                  <label htmlFor="a-faina">Temperatură făină (°C)</label>
                   <input type="number" id="a-faina" step="0.1" placeholder="ex. 20" value={aluatFaina} onChange={(e) => setAluatFaina(e.target.value)} />
               </div>
               <div className="input-group">
-                  <label htmlFor="a-aer">Temperatură aer (°C):</label>
+                  <label htmlFor="a-aer">Temperatură aer (°C)</label>
                   <input type="number" id="a-aer" step="0.1" placeholder="ex. 24.5" value={aluatAer} onChange={(e) => setAluatAer(e.target.value)} />
               </div>
-              {aluatError && <div className="error">Introduceți toate valorile numerice corect.</div>}
+              {aluatError && <div className="error">Introduceți toate valorile corect.</div>}
               <button onClick={handleCalcAluat}>Calculează</button>
               {aluatResult && (
                   <div className="result-box">
-                      Temperatura apei trebuie să fie: <span>{aluatResult}°C</span>
+                      Temperatura apei
+                      <span>{aluatResult}°C</span>
                   </div>
               )}
               <button className="btn-back" onClick={resetAll}>Înapoi</button>
           </div>
         )}
       </div>
-    </>
+
+      <div className="signature">
+        <div className="dot"></div>
+        Created by Cornel
+      </div>
+    </div>
   )
 }
 
