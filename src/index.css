@@ -1,20 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
 
 :root {
-  --primary: #00e676; /* vibrant green */
-  --primary-hover: #00c853; /* darker vibrant green */
-  --bg-dark: #0d1110; /* very dark green-tinted black */
-  --bg-panel: #161c1a; /* slightly lighter for panels */
-  --bg-input: #1f2724; /* input background */
-  --text-main: #edf2f0;
-  --text-muted: #8c9b96;
-  --error: #ff5252;
-  --shadow: rgba(0, 230, 118, 0.15);
+  --primary: #c87a41; /* Baked crust rustic orange */
+  --primary-hover: #a65d29;
+  --bg-dark: #f0e6d2; /* Warm parchment / dough */
+  --bg-panel: #ffffff;
+  --bg-input: #fdfaf4;
+  --text-main: #4a3831; /* Deep espresso brown */
+  --text-muted: #8b7365;
+  --error: #d9534f;
+  --shadow: rgba(74, 56, 49, 0.1);
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-dark);
+  /* Optional: subtle CSS noise for more rustic feel */
+  background-image: radial-gradient(var(--bg-panel) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0;
   color: var(--text-main);
   margin: 0;
   padding: 0;
@@ -40,11 +44,10 @@ body {
   background-color: var(--bg-panel);
   padding: 2.5rem 2rem;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--shadow);
+  box-shadow: 0 10px 40px var(--shadow), 0 0 0 1px rgba(200, 122, 65, 0.1);
   width: 100%;
   text-align: center;
   box-sizing: border-box;
-  border: 1px solid rgba(0, 230, 118, 0.1);
   animation: fadeIn 0.4s ease-out forwards;
 }
 
@@ -68,7 +71,7 @@ h1 span {
 
 button {
   background-color: var(--primary);
-  color: #000;
+  color: #fff;
   border: none;
   padding: 14px 20px;
   margin: 10px 0;
@@ -79,14 +82,12 @@ button {
   font-weight: 600;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-sizing: border-box;
-  position: relative;
-  overflow: hidden;
 }
 
 button:hover {
   background-color: var(--primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 230, 118, 0.3);
+  box-shadow: 0 5px 15px rgba(200, 122, 65, 0.25);
 }
 
 button:active {
@@ -96,14 +97,14 @@ button:active {
 .btn-back {
   background-color: transparent;
   color: var(--text-muted);
-  border: 1px solid var(--text-muted);
+  border: 1px solid #d4c8b8;
   margin-top: 25px;
 }
 
 .btn-back:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: #f9f5ed;
   color: var(--text-main);
-  border-color: var(--text-main);
+  border-color: var(--primary);
   box-shadow: none;
 }
 
@@ -129,7 +130,7 @@ input {
   width: 100%;
   padding: 14px;
   background-color: var(--bg-input);
-  border: 1px solid transparent;
+  border: 1px solid #e8decb;
   color: var(--text-main);
   border-radius: 10px;
   box-sizing: border-box;
@@ -140,19 +141,20 @@ input {
 
 input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.15);
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(200, 122, 65, 0.15);
 }
 
 input::placeholder {
-  color: #55625c;
+  color: #c4b9a9;
 }
 
 .result-box {
   margin-top: 25px;
   padding: 20px;
   border-radius: 12px;
-  background-color: rgba(0, 230, 118, 0.05);
-  border: 1px solid rgba(0, 230, 118, 0.2);
+  background-color: #fffbfa;
+  border: 1px solid rgba(200, 122, 65, 0.2);
   color: var(--text-main);
   font-weight: 500;
   font-size: 1.1rem;
@@ -191,6 +193,14 @@ input::placeholder {
   align-items: center;
   justify-content: center;
   gap: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.signature:hover {
+  color: var(--primary);
+  transform: translateY(-2px);
 }
 
 .signature .dot {
@@ -199,5 +209,5 @@ input::placeholder {
   background-color: var(--primary);
   border-radius: 50%;
   display: inline-block;
-  box-shadow: 0 0 8px var(--primary);
+  box-shadow: 0 0 6px rgba(200, 122, 65, 0.5);
 }

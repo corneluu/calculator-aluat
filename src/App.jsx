@@ -125,10 +125,10 @@ function App() {
         )}
       </div>
 
-      <div className="signature">
+      <a href="https://corneluu.github.io/corneluu/" target="_blank" rel="noopener noreferrer" className="signature">
         <div className="dot"></div>
-        Created by Cornel
-      </div>
+        Creat de Cornel
+      </a>
     </div>
   )
 }
