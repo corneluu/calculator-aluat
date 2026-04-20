@@ -1,0 +1,16 @@
+{
+  "name": "Calculator Aluat",
+  "short_name": "Aluat",
+  "start_url": "/calculator-aluat/",
+  "display": "standalone",
+  "background_color": "#fefae0",
+  "theme_color": "#d4a373",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
