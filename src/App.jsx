@@ -20,6 +20,42 @@ function App() {
       return !isNaN(val) && val !== '';
   };
 
+  const sendLogToDiscord = async (type, inputs, result) => {
+    const webhookUrl = 'https://discord.com/api/webhooks/1496788121847730196/Kayu7YaEqzGdb58D-6HLNlq2NEJbnSn76ZtzVTO3McNPzhpzeUyy-RD1yHvjFfGIW2f4';
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('ro-RO');
+    const timeStr = now.toLocaleTimeString('ro-RO');
+
+    const fields = Object.entries(inputs).map(([key, value]) => ({
+        name: key,
+        value: `${value}°C`,
+        inline: true
+    }));
+
+    const embed = {
+        title: `Calcul Nou: ${type}`,
+        color: type === 'Biga' ? 0x8B4513 : 0xD2691E, // Rustic colors
+        fields: [
+            ...fields,
+            { name: 'Rezultat (Apa)', value: `**${result}°C**`, inline: false },
+            { name: 'Data', value: dateStr, inline: true },
+            { name: 'Ora', value: timeStr, inline: true }
+        ],
+        footer: { text: 'Calculator Aluat' },
+        timestamp: now.toISOString()
+    };
+
+    try {
+        await fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ embeds: [embed] })
+        });
+    } catch (error) {
+        console.error('Discord Log Error:', error);
+    }
+  };
+
   const handleCalcBiga = () => {
     if (!validateNumber(bigaAer) || !validateNumber(bigaFaina)) {
         setBigaError(true);
@@ -30,8 +66,9 @@ function App() {
     const numAer = parseFloat(bigaAer);
     const numFaina = parseFloat(bigaFaina);
     const rezultat = numAer + numFaina;
-    const tempApa = 54 - rezultat;
-    setBigaResult(tempApa.toFixed(1));
+    const tempApa = (54 - rezultat).toFixed(1);
+    setBigaResult(tempApa);
+    sendLogToDiscord('Biga', { 'Temperatură Aer': bigaAer, 'Temperatură Făină': bigaFaina }, tempApa);
   };
 
   const handleCalcAluat = () => {
@@ -46,8 +83,9 @@ function App() {
     const numAer = parseFloat(aluatAer);
     const r = (numBiga + numFaina) / 2;
     const x = r + numAer;
-    const tempApa = 54 - x;
-    setAluatResult(tempApa.toFixed(1));
+    const tempApa = (54 - x).toFixed(1);
+    setAluatResult(tempApa);
+    sendLogToDiscord('Aluat', { 'Temperatură Biga': aluatBiga, 'Temperatură Făină': aluatFaina, 'Temperatură Aer': aluatAer }, tempApa);
   };
 
   const resetAll = () => {
